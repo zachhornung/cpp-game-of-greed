@@ -94,5 +94,18 @@ std::vector<int> Game_logic::get_scorers(std::vector<int> dice){
 
 
 bool Game_logic::validate_keepers(std::vector<int> roll, std::vector<int> keepers){
-
+  for (auto die : keepers){
+    if (die > 0){
+      if (std::count(keepers.begin(), keepers.end(), die) > std::count(roll.begin(), roll.end(), die)) return false;
+    }
+  }
+  return true;
 };
+
+
+// for num in keepers:
+//       if num:
+//         if keepers.count(num) > roll.count(int(num)):
+//           return False
+
+//     return True
