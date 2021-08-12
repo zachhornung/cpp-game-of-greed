@@ -70,7 +70,26 @@ int Game_logic::calculate_score(std::vector<int> dice){
 
 
 std::vector<int> Game_logic::get_scorers(std::vector<int> dice){
+  std::unordered_map<int, int> occurrences;
 
+  // count how many times each die was rolled
+
+  for (auto die : dice){
+    occurrences[die] = std::count(dice.begin(), dice.end(), die);
+  }
+
+  std::vector<int> keys;
+  std::vector<int> values;
+  for (auto kv : occurrences) {keys.push_back(kv.first); values.push_back(kv.second);}
+
+  // find the dice that have a score associated with them
+  std::vector<int> scoring_dice;
+  for (auto die : keys){
+    int score = scoresheet[die][occurrences[die]];
+    scoring_dice.push_back(score);
+  }
+
+  return scoring_dice;
 };
 
 
