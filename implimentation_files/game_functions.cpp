@@ -1,6 +1,7 @@
 #include "../header_files/game_functions.h"
 
 Game_functions::Game_functions(int num_rounds) : num_rounds(num_rounds){};
+
 void Game_functions::bank_points(){
 
 };
