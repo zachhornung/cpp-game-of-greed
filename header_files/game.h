@@ -8,6 +8,7 @@ class Game : protected Game_functions {
   private:
     void play_round();
   public:
+    Game();
     void play();
 };
 

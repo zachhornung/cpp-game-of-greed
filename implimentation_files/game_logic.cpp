@@ -92,7 +92,6 @@ std::vector<int> Game_logic::get_scorers(std::vector<int> dice){
   return scoring_dice;
 };
 
-
 bool Game_logic::validate_keepers(std::vector<int> roll, std::vector<int> keepers){
   for (auto die : keepers){
     if (die > 0){
@@ -101,11 +100,3 @@ bool Game_logic::validate_keepers(std::vector<int> roll, std::vector<int> keeper
   }
   return true;
 };
-
-
-// for num in keepers:
-//       if num:
-//         if keepers.count(num) > roll.count(int(num)):
-//           return False
-
-//     return True
