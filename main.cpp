@@ -4,6 +4,7 @@
 #include <iostream>
 
 int main(){
+  srand(5);
   Game game;
   game.play();
 };
