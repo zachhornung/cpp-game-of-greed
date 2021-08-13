@@ -7,7 +7,8 @@
 
 // class definitions start here
 class Game_functions{
-  private:
+  protected:
+    Game_logic manager;
     Banker banker;
     int num_rounds;
     int round_number;

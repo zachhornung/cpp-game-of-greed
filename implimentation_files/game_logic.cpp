@@ -39,47 +39,50 @@ std::vector<int> Game_logic::roll_dice(int num_dice){
 };
 
 int Game_logic::calculate_score(std::vector<int> dice){
-
-  std::unordered_map<int, int> occurrences;
-
+  occurrences.clear();
+  keys.clear();
+  values.clear();
   // count how many times each die was rolled
 
   for (auto die : dice){
     occurrences[die] = std::count(dice.begin(), dice.end(), die);
   }
 
-  std::vector<int> keys;
-  std::vector<int> values;
-  for (auto kv : occurrences) {keys.push_back(kv.first); values.push_back(kv.second);}
+  for (auto kv : occurrences) {
+    keys.push_back(kv.first); 
+    values.push_back(kv.second);
+  }
 
   // first check special scoring cases
 
   std::vector<int> straight{1,2,3,4,5,6};
-  if (dice == straight) return scoresheet[7][0];
+  if (dice == straight) return scoresheet[6][0];
 
   if (occurrences.size() == 3){
-    if (occurrences[values[0]] == 2 && occurrences[values[1]] == 2 && occurrences[values[2]] == 2) return scoresheet[7][0];
+    if (occurrences[values[0]] == 2 && occurrences[values[1]] == 2 && occurrences[values[2]] == 2) return scoresheet[6][0];
   }
 
   // then check regular scores
+  int score{0};
+  for (auto die : keys) {
+    int num_rolled = occurrences[die];
+    score += scoresheet[die-1][num_rolled-1];
+    };
 
-  std::vector<int> scores;
-  for (auto key : keys) scores.push_back(scoresheet[key][occurrences[key]]);
-  return std::accumulate(scores.begin(), scores.end(), 0);
+  return score;
 };
 
 
 std::vector<int> Game_logic::get_scorers(std::vector<int> dice){
-  std::unordered_map<int, int> occurrences;
-
+  occurrences.clear();
+  keys.clear();
+  values.clear();
   // count how many times each die was rolled
 
   for (auto die : dice){
     occurrences[die] = std::count(dice.begin(), dice.end(), die);
   }
 
-  std::vector<int> keys;
-  std::vector<int> values;
   for (auto kv : occurrences) {keys.push_back(kv.first); values.push_back(kv.second);}
 
   // find the dice that have a score associated with them
@@ -95,8 +98,11 @@ std::vector<int> Game_logic::get_scorers(std::vector<int> dice){
 bool Game_logic::validate_keepers(std::vector<int> roll, std::vector<int> keepers){
   for (auto die : keepers){
     if (die > 0){
-      if (std::count(keepers.begin(), keepers.end(), die) > std::count(roll.begin(), roll.end(), die)) return false;
+      int keeper_count = std::count(keepers.begin(), keepers.end(), die);
+      int roll_count = std::count(roll.begin(), roll.end(), die);
+      if (keeper_count > roll_count) return false;
     }
+    else return false;
   }
   return true;
 };

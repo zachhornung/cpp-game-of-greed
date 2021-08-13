@@ -6,6 +6,7 @@
 #include <vector>
 #include <cctype>
 #include <random>
+#include <unordered_map>
 
 // global variables here
 const int scoresheet[7][6] = {
@@ -31,11 +32,16 @@ class Banker{
 
 
 class Game_logic{
+  private:
+    std::unordered_map<int, int> occurrences;
+    std::vector<int> keys;
+    std::vector<int> values;
+
   public:
     std::vector<int> roll_dice(int num_dice);
-    static int calculate_score(std::vector<int> dice);
-    static std::vector<int> get_scorers(std::vector<int> dice);
-    static bool validate_keepers(std::vector<int> roll, std::vector<int> keepers);
+    int calculate_score(std::vector<int> dice);
+    std::vector<int> get_scorers(std::vector<int> dice);
+    bool validate_keepers(std::vector<int> roll, std::vector<int> keepers);
 };
 
 #endif
