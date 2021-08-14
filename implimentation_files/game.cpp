@@ -1,5 +1,5 @@
 #include <vector>
-#include<string>
+#include <string>
 #include "../header_files/game.h"
 
 void Game::play_round(){
@@ -34,8 +34,6 @@ void Game::play_round(){
     }
   }
 };
-
-// Game::Game(int num_rounds) : Game_functions(num_rounds){};
 
 void Game::play(){
   std::cout << "Welcome to Game of Greed" << std::endl;

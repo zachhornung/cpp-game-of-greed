@@ -1,11 +1,12 @@
-#include "../header_files/game.h"
-#include "../header_files/game_functions.h"
-#include "../header_files/game_logic.h"
 #include <vector>
 #include <string>
 #include <algorithm>
 #include <iostream>
 #include <sstream>
+#include <ostream>
+#include <iterator>
+
+#include "../header_files/game_functions.h"
 
 
 
@@ -24,14 +25,17 @@ void Game_functions::quit_game(){
 
 std::vector<int> Game_functions::get_and_format_user_input(){
   std::string s;
-  std::getline( std::cin, s );
-  if (s == "q") {
-    quit_game();
-  }
-  std::istringstream is( s );
   std::vector<int> user_input;
-  int x;
-  while ( is >> x ) user_input.push_back( x );
+  std::cin >> s;
+
+  for (int i = 0; i < s.size(); ++i){
+    if (isdigit(s[i])){
+      int num = s[i]-48;
+      user_input.push_back(num);
+    }
+    if (s[i] == 113) quit_game();
+  }
+  
   return user_input;
 };
 
@@ -54,8 +58,10 @@ std::vector<int> Game_functions::validate_user_input(std::vector<int> dice_roll)
 };
 
 void Game_functions::print_roll(std::vector<int> roll){
-  std::string str(roll.begin(), roll.end());
-  std::cout << "*** " << str << " ***" << std::endl;
+
+  std::cout << "*** ";
+  for (auto item : roll) std::cout << item << " ";
+  std::cout << " ***" << std::endl;
 };
 
 void Game_functions::calculate_remaining_dice(std::vector<int> roll, std::vector<int> input){ 
@@ -79,6 +85,7 @@ void Game_functions::print_zilcher(){
 std::vector<int> Game_functions::roll_the_dice(){
   std::cout << "Rolling " << dice_count << " dice..." << std::endl;
   std::vector<int> dice_roll = manager.roll_dice(dice_count);
+  print_roll(dice_roll);
   return dice_roll;
 };
 

@@ -1,8 +1,6 @@
 #ifndef GAME_FUNCTIONS_H
 #define GAME_FUNCTIONS_H
 
-#include <string>
-#include <iostream>
 #include "game_logic.h"
 
 // class definitions start here

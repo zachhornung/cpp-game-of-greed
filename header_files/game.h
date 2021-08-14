@@ -8,7 +8,6 @@ class Game : public Game_functions {
     void play_round();
 
   public:
-    // Game(int num_rounds) : Game_functions(num_rounds){};
     void play();
 };
 
