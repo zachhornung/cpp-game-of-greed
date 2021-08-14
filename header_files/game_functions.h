@@ -13,7 +13,6 @@ class Game_functions{
     int dice_count{6};
 
   public:
-    // Game_functions(int num_rounds);
     void bank_points();
     void quit_game();
     std::vector<int> get_and_format_user_input();
