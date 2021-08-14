@@ -2,6 +2,8 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <iostream>
+#include <sstream>
 
 
 
@@ -18,7 +20,34 @@ void Game_functions::quit_game(){
   std::exit(EXIT_SUCCESS);
 };
 
-bool Game_functions::validate_user_input(std::vector<int> dice_roll){
+std::vector<int> Game_functions::get_and_format_user_input(){
+  std::string s;
+  std::getline( std::cin, s );
+  if (s == "q") {
+    quit_game();
+  }
+  std::istringstream is( s );
+  std::vector<int> user_input;
+  int x;
+  while ( is >> x ) user_input.push_back( x );
+  return user_input;
+};
+
+std::vector<int> Game_functions::validate_user_input(std::vector<int> dice_roll){
+
+  std::vector<int> user_input = get_and_format_user_input();
+  
+  bool input_is_valid = manager.validate_keepers(dice_roll, user_input);
+  if (input_is_valid) return user_input;
+
+  std::cout << "Cheater!!! Or possibly made a typo..." << std::endl;
+
+  while (!input_is_valid){
+    print_roll(dice_roll);
+    std::cout << "Enter dice to keep, or (q)uit:" << std::endl;
+    input_is_valid = manager.validate_keepers(dice_roll, user_input);
+    if (input_is_valid) return user_input;
+  }
 
 };
 

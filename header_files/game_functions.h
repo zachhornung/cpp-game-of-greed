@@ -18,7 +18,8 @@ class Game_functions{
     Game_functions(int num_rounds);
     void bank_points();
     void quit_game();
-    bool validate_user_input(std::vector<int> dice_roll);
+    std::vector<int> get_and_format_user_input();
+    std::vector<int> validate_user_input(std::vector<int> dice_roll);
     void print_roll(std::vector<int> roll);
     void calculate_remaining_dice(std::vector<int> roll, std::vector<int> input);
     void print_zilcher();
