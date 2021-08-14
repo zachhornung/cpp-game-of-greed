@@ -10,12 +10,12 @@ class Game_functions{
   protected:
     Game_logic manager;
     Banker banker;
-    int num_rounds;
-    int round_number;
-    int dice_count;
+    int num_rounds{20};
+    int round_number{0};
+    int dice_count{6};
 
   public:
-    Game_functions(int num_rounds);
+    // Game_functions(int num_rounds);
     void bank_points();
     void quit_game();
     std::vector<int> get_and_format_user_input();

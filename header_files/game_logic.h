@@ -47,16 +47,3 @@ class Game_logic{
 };
 
 #endif
-
-// int main( void )
-// {
-//   std::random_device os_seed;
-//   const u32 seed = os_seed();
-
-//   engine generator( seed );
-//   std::uniform_int_distribution< u32 > distribute( 1, 6 );
-
-//   for( int repetition = 0; repetition < 10; ++repetition )
-//     std::cout << distribute( generator ) << std::endl;
-//   return 0;
-// }

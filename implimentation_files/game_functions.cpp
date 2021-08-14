@@ -1,4 +1,6 @@
+#include "../header_files/game.h"
 #include "../header_files/game_functions.h"
+#include "../header_files/game_logic.h"
 #include <vector>
 #include <string>
 #include <algorithm>
@@ -7,7 +9,7 @@
 
 
 
-Game_functions::Game_functions(int num_rounds) : num_rounds(num_rounds){};
+// Game_functions::Game_functions(int num_rounds) : num_rounds(num_rounds){};
 
 void Game_functions::bank_points(){
   int banked = banker.bank();
