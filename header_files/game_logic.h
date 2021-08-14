@@ -28,6 +28,8 @@ class Banker{
     void shelf(int num);
     int bank();
     int clear_shelf();
+    int get_balance();
+    int get_shelved();
 };
 
 

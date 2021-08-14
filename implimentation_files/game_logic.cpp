@@ -23,6 +23,14 @@ int Banker::clear_shelf(){
   return shelved;
 };
 
+int Banker::get_balance(){
+  return balance;
+}
+
+int Banker::get_shelved() {
+  return shelved;
+};
+
 // member definitions for game_logic class
 std::vector<int> Game_logic::roll_dice(int num_dice){
 // this always returns a sorted vector, reduces downstream work
